@@ -303,7 +303,8 @@ public class FilmDaoImpl implements FilmDAO {
 			stmt.setString(1, film.getTitle());
 			stmt.setInt(2, film.getLanguageId());
 			int updateCount = stmt.executeUpdate();
-
+			conn.commit();
+			conn.close();
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
 				if (keys.next()) {
@@ -315,9 +316,13 @@ public class FilmDaoImpl implements FilmDAO {
 			} else {
 				film = null;
 			}
-			conn.commit();
-			conn.close();
-		} catch (SQLException sqle) {
+			
+		} 
+		
+		
+		
+		
+		catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
 				try {
@@ -326,7 +331,7 @@ public class FilmDaoImpl implements FilmDAO {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error inserting actor " + film);
+			
 		}
 		return film;
 	}
