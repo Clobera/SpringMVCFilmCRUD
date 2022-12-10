@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.FilmDAO;
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -27,6 +28,15 @@ public class FilmController {
 		Film f = filmDao.findFilmsById(Integer.parseInt(id));
 		mv.addObject("film", f);
 		mv.setViewName("result");
+		return mv;
+	}
+	
+	@RequestMapping(path = "findActorById.do", params = "id", method = RequestMethod.GET)
+	public ModelAndView findActorById(String id) {
+		ModelAndView mv = new ModelAndView();
+		Actor a = filmDao.findActorById(Integer.parseInt(id));
+		mv.addObject("actor", a);
+		mv.setViewName("result-actor");
 		return mv;
 	}
 

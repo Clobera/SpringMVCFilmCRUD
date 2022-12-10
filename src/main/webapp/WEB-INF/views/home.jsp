@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>SD Movie Data Base</h1>
-<a href = "webapp/filmById.html" ></a>
+<a href = "filmById.html" >find by id</a>
 </body>
 </html>
