@@ -127,8 +127,7 @@ public class FilmDaoImpl implements FilmDAO {
 				String rating = rs.getString("rating");
 				String features = rs.getString("special_features");
 
-				Film film = new Film(filmId, title, desc, releaseYear, language, rentDur, rate, length, repCost, rating,
-						features);
+				Film film = new Film(filmId, title, desc, releaseYear, language, rentDur, rate, length, repCost, rating, features);
 				films.add(film);
 
 			}
@@ -309,15 +308,8 @@ public class FilmDaoImpl implements FilmDAO {
 				if (keys.next()) {
 					int newFilmId = keys.getInt(1);
 					film.setId(newFilmId);
-					if (film.getCast() != null && film.getCast().size() > 0) {
-						sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
-						stmt = conn.prepareStatement(sql);
-						for (Actor actor : film.getCast()) {
-							stmt.setInt(1, newFilmId);
-							stmt.setInt(2, actor.getId());
-							updateCount = stmt.executeUpdate();
-						}
-					}
+					
+					
 				}
 
 			} else {
