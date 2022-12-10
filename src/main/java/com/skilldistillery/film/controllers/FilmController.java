@@ -44,7 +44,7 @@ public class FilmController {
 	@RequestMapping(path = "filmAdded.do", method = RequestMethod.GET)
 	public ModelAndView stateAddedRedirect() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result");
+		mv.setViewName("views/result");
 		return mv;
 	}
 

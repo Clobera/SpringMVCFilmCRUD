@@ -26,20 +26,15 @@
 			<br>
 			<br>
 
-			<div>
+			
 				<h2>Cast</h2>
 				<ul>
-					<c:forEach var="cast" items="${film.cast}">
-						<c:forEach var="actor" items="${cast}">
-							<tr>
-							<td> ${actor.firstName} </td>
-							<td> ${actor.lastName} </td>
-							</tr>
+						<c:forEach var="actor" items="${film.cast}">
+							<li> ${actor.firstName} ${actor.lastName}</li>
 							
 						</c:forEach>
-					</c:forEach>
 				</ul>
-			</div>
+			
 
 			<br>
 			<br>
