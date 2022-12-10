@@ -127,7 +127,8 @@ public class FilmDaoImpl implements FilmDAO {
 				String rating = rs.getString("rating");
 				String features = rs.getString("special_features");
 
-				Film film = new Film(filmId, title, desc, releaseYear, language, rentDur, rate, length, repCost, rating, features);
+				Film film = new Film(filmId, title, desc, releaseYear, language, rentDur, rate, length, repCost, rating,
+						features);
 				films.add(film);
 
 			}
@@ -308,7 +309,7 @@ public class FilmDaoImpl implements FilmDAO {
 				if (keys.next()) {
 					int newFilmId = keys.getInt(1);
 					film.setId(newFilmId);
-			
+
 				}
 
 			} else {
