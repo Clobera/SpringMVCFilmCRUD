@@ -46,7 +46,9 @@ public class Film {
 				+ ", rating=" + rating + ", specialFeatures=" + specialFeatures + "]";
 	}
 
-	public Film() {}
+	public Film() {
+		
+	}
 	public int getId() {
 		return id;
 	}
