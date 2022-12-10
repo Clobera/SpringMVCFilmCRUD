@@ -28,11 +28,17 @@
 
 			<div>
 				<h2>Cast</h2>
-					<ul>
-				<c:forEach var="c" items="${film.cast}">
-					<li>${c.firstName} ${c.lastName}</li>
-				</c:forEach>
-					</ul>
+				<ul>
+					<c:forEach var="cast" items="${film.cast}">
+						<c:forEach var="actor" items="${cast}">
+							<tr>
+							<td> ${actor.firstName} </td>
+							<td> ${actor.lastName} </td>
+							</tr>
+							
+						</c:forEach>
+					</c:forEach>
+				</ul>
 			</div>
 
 			<br>
