@@ -62,7 +62,7 @@ public class FilmDaoImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film findFilmsById(int id) {
+	public Film findFilmById(int id) {
 		Film film = null;
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pw);
