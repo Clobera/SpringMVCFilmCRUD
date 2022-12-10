@@ -308,8 +308,7 @@ public class FilmDaoImpl implements FilmDAO {
 				if (keys.next()) {
 					int newFilmId = keys.getInt(1);
 					film.setId(newFilmId);
-					
-					
+			
 				}
 
 			} else {
