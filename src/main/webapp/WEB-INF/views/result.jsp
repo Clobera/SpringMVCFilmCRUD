@@ -10,12 +10,15 @@
 <body>
 	<c:choose>
 		<c:when test="${! empty film}">
-			<h1>${film.title}(${film.releaseYear})</h1>
-			<ul>
-				<li>${film.description}</li>
-
-
-			</ul>
+			<h1>${film.title} (${film.releaseYear})</h1>
+			<h3>${film.language}</h3>
+			
+			<div>
+			<h2>Description</h2>
+			<p>${film.description}</p>
+			</div>
+			
+			
 		</c:when>
 		<c:otherwise>
 			<p>No film found</p>
