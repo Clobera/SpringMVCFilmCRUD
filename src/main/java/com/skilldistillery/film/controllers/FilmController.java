@@ -21,9 +21,7 @@ public class FilmController {
 
 		return "views/home";
 	}
-	
-	
-	
+
 	@RequestMapping(path = "findFilmById.do", params = "id", method = RequestMethod.GET)
 	public ModelAndView findFilmById(String id) {
 		ModelAndView mv = new ModelAndView();
@@ -32,16 +30,16 @@ public class FilmController {
 		mv.setViewName("views/result");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
-	public ModelAndView createFilm(Film film,RedirectAttributes redir) {
+	public ModelAndView createFilm(Film film, RedirectAttributes redir) {
 		filmDao.createFilm(film);
 		ModelAndView mv = new ModelAndView();
 		redir.addFlashAttribute("film", film);
 		mv.setViewName("redirect:filmAdded.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "filmAdded.do", method = RequestMethod.GET)
 	public ModelAndView filmAddedRedirect() {
 		ModelAndView mv = new ModelAndView();
@@ -64,8 +62,5 @@ public class FilmController {
 		mv.setViewName("views/result");
 		return mv;
 	}
-	
-	
-	
 
 }
