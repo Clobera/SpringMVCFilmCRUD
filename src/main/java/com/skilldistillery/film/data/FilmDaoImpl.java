@@ -67,7 +67,7 @@ public class FilmDaoImpl implements FilmDAO {
 		Film film = null;
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pw);
-			String sql = "select * from actor join film_actor on actor.id = film_actor.actor_id join film on film.id = film_actor.film_id join language on film.language_id = language.id where film.id=?";
+			String sql = "select * from film join language on film.language_id = language.id where film.id=?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, Filmid);
