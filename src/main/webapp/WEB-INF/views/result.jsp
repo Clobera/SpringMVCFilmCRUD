@@ -54,6 +54,11 @@
 			</div>
 
 
+		<div>
+		<h3><a href="saveFilm.html">Make Changes to Film</a></h3>
+		
+		</div>
+
 		</c:when>
 		<c:otherwise>
 			<p>No film found</p>
