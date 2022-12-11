@@ -10,6 +10,6 @@
 <h1>SD Movie Data Base</h1>
 
 <a href = "filmById.html" >find by id</a>
-<a href = "CreateFilm.html">Add Film</a>
+<a href = "createFilm.html">Add Film</a>
 </body>
 </html>

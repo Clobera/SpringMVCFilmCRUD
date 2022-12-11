@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +31,10 @@
 
 			
 				<h2>Cast</h2>
+				
 				<ul>
-						<c:forEach var="actor" items="${film.cast}">
-							<li> ${actor.firstName} ${actor.lastName}</li>
+						<c:forEach var="actor"  items="${cast}">
+							<li> ${actor}</li>
 							
 						</c:forEach>
 				</ul>

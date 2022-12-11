@@ -62,14 +62,14 @@ public class FilmDaoImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film findFilmById(int id) {
+	public Film findFilmById(int Filmid) {
 		Film film = null;
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pw);
 			String sql = "select * from actor join film_actor on actor.id = film_actor.actor_id join film on film.id = film_actor.film_id join language on film.language_id = language.id where film.id=?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, id);
+			stmt.setInt(1, Filmid);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int filmId = rs.getInt("film.id");
@@ -261,22 +261,10 @@ public class FilmDaoImpl implements FilmDAO {
 			stmt.setString(2, actor.getLastName());
 			stmt.setInt(3, actor.getId());
 			int updateCount = stmt.executeUpdate();
-			if (updateCount == 1) {
-				// Replace actor's film list
-				sql = "DELETE FROM film_actor WHERE actor_id = ?";
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, actor.getId());
-				updateCount = stmt.executeUpdate();
-				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
-				stmt = conn.prepareStatement(sql);
-				for (Film film : actor.getFilms()) {
-					stmt.setInt(1, film.getId());
-					stmt.setInt(2, actor.getId());
-					updateCount = stmt.executeUpdate();
-				}
+			
 				conn.commit(); // COMMIT TRANSACTION
 				conn.close();
-			}
+			
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
@@ -379,27 +367,21 @@ public class FilmDaoImpl implements FilmDAO {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, user, pw);
-			conn.setAutoCommit(false); // START TRANSACTION
-			String sql = "UPDATE film SET title=?, language_id=? " + " WHERE id=?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating)  VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
-			stmt.setInt(2, film.getLanguageId());
-			stmt.setInt(3, 1001);
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getReleaseYear());
+			stmt.setInt(4, film.getLanguageId());
+			stmt.setInt(5, film.getRentalDuration());
+			stmt.setDouble(6, film.getRentalRate());
+			stmt.setInt(7, film.getLength());
+			stmt.setDouble(8, film.getReplacementCost());
+			stmt.setString(9, film.getRating());
+
 			int updateCount = stmt.executeUpdate();
-			if (updateCount == 1) {
-				// Replace actor's film list
-				sql = "DELETE FROM film_actor WHERE film_id=?";
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, film.getId());
-				updateCount = stmt.executeUpdate();
-				sql = "INSERT INTO film_actor (film_id) VALUES (?)";
-				stmt = conn.prepareStatement(sql);
-
-				stmt.setInt(1, film.getId());
-
-				updateCount = stmt.executeUpdate();
-			}
-			conn.commit(); // COMMIT TRANSACTION
+			conn.commit();
 			conn.close();
 
 		} catch (
