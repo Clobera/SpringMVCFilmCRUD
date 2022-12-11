@@ -33,7 +33,7 @@
 				<h2>Cast</h2>
 				
 				<ul>
-						<c:forEach var="actor"  items="${cast}">
+						<c:forEach var="actor"  items="${film.cast}">
 							<li> ${actor}</li>
 							
 						</c:forEach>
