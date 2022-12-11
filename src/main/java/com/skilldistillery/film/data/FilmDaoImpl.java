@@ -369,7 +369,7 @@ public class FilmDaoImpl implements FilmDAO {
 		try {
 			conn = DriverManager.getConnection(URL, user, pw);
 			conn.setAutoCommit(false);
-			String sql = "UPDATE film SET title= ?, description= ?, release_year= ?, language_id= ?, rental_duration= ?, rental_rate= ?, length= ?, replacement_cost= ?, rating= ? WHERE id= ?;";
+			String sql = "UPDATE film SET title= COALESCE(?, title), description= COALESCE(?, description), release_year= COALESCE(?, release_year), language_id= COALESCE(?, language_id), rental_duration= COALESCE(?, rental_duration), rental_rate= COALESCE(?, rental_rate), length= COALESCE(?, length), replacement_cost= COALESCE(?, replacement_cost), rating= COALESCE(?, rating), WHERE id= ?";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			if(film.getTitle().isEmpty()) {
 				stmt.setNull(1, Types.VARCHAR);
