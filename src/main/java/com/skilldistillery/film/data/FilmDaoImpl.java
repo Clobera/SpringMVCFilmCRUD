@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -368,17 +369,70 @@ public class FilmDaoImpl implements FilmDAO {
 		try {
 			conn = DriverManager.getConnection(URL, user, pw);
 			conn.setAutoCommit(false);
-			String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating)  VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String sql = "UPDATE film SET title= ?, description= ?, release_year= ?, language_id= ?, rental_duration= ?, rental_rate= ?, length= ?, replacement_cost= ?, rating= ? WHERE id= ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1, film.getTitle());
-			stmt.setString(2, film.getDescription());
-			stmt.setInt(3, film.getReleaseYear());
-			stmt.setInt(4, film.getLanguageId());
-			stmt.setInt(5, film.getRentalDuration());
-			stmt.setDouble(6, film.getRentalRate());
-			stmt.setInt(7, film.getLength());
-			stmt.setDouble(8, film.getReplacementCost());
-			stmt.setString(9, film.getRating());
+			if(film.getTitle().isEmpty()) {
+				stmt.setNull(1, Types.VARCHAR);
+				}else {
+					stmt.setString(1, film.getTitle());
+				}
+			if(film.getDescription().isEmpty()) {
+				stmt.setNull(2, Types.VARCHAR);
+			}else {
+				stmt.setString(2, film.getDescription());
+			}
+			if(film.getReleaseYear()== 0) {
+				stmt.setNull(3, Types.VARCHAR);
+			}else {
+				stmt.setInt(3, film.getReleaseYear());
+			}
+			if(film.getLanguageId()== 0) {
+				stmt.setNull(4, Types.VARCHAR);
+			}else {
+				stmt.setInt(4, film.getLanguageId());
+			}
+			if(film.getRentalDuration()== 0) {
+				stmt.setNull(5, Types.VARCHAR);
+			}else {
+				stmt.setInt(5, film.getRentalDuration());
+			}
+			if(film.getRentalRate()== 0) {
+				stmt.setNull(6, Types.VARCHAR);
+			}else {
+				stmt.setDouble(6, film.getRentalRate());
+			}
+			if(film.getLength()== 0) {
+				stmt.setNull(7, Types.VARCHAR);
+			}else {
+				stmt.setInt(7, film.getLength());
+			}
+			if(film.getReplacementCost()== 0) {
+				stmt.setNull(8, Types.VARCHAR);
+			}else {
+				stmt.setDouble(8, film.getReplacementCost());
+			}
+			if(film.getRating().isEmpty()) {
+				stmt.setNull(9, Types.VARCHAR);
+			}else {
+				stmt.setString(9, film.getRating());
+			}
+			stmt.setInt(10, film.getId());
+			
+			
+			
+			
+			
+			
+			
+//			stmt.setString(1, film.getTitle());
+//			stmt.setString(2, film.getDescription());
+//			stmt.setInt(3, film.getReleaseYear());
+//			stmt.setInt(4, film.getLanguageId());
+//			stmt.setInt(5, film.getRentalDuration());
+//			stmt.setDouble(6, film.getRentalRate());
+//			stmt.setInt(7, film.getLength());
+//			stmt.setDouble(8, film.getReplacementCost());
+//			stmt.setString(9, film.getRating());
 
 			int updateCount = stmt.executeUpdate();
 			conn.commit();
