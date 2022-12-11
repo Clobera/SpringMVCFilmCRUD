@@ -13,7 +13,7 @@
 <body>
 	<c:choose>
 		<c:when test="${! empty film}">
-			<h1>${film.title}(${film.releaseYear})</h1>
+			<h1>${film.getTitle()}(${film.releaseYear})</h1>
 			<h3>${film.language}</h3>
 			<h3>Rated ${film.rating}</h3>
 
@@ -29,16 +29,17 @@
 			<br>
 			<br>
 
-			
-				<h2>Cast</h2>
-				
-				<ul>
-						<c:forEach var="actor"  items="${film.cast}">
-							<li> ${actor}</li>
-							
-						</c:forEach>
-				</ul>
-			
+
+			<h2>Cast</h2>
+
+			<ul>
+				<c:forEach var="actor" items="${film.cast}">
+					<li><c:out value="${actor.getFirstName()}" /> <c:out
+							value="${actor.getLastName()}" /></li>
+
+				</c:forEach>
+			</ul>
+
 
 			<br>
 			<br>
@@ -54,10 +55,12 @@
 			</div>
 
 
-		<div>
-		<h3><a href="saveFilm.html">Make Changes to Film</a></h3>
-		
-		</div>
+			<div>
+				<h3>
+					<a href="saveFilm.html">Make Changes to Film</a>
+				</h3>
+
+			</div>
 
 		</c:when>
 		<c:otherwise>
