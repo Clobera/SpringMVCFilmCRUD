@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.film.data.FilmDAO;
@@ -42,7 +43,23 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path = "filmAdded.do", method = RequestMethod.GET)
-	public ModelAndView stateAddedRedirect() {
+	public ModelAndView filmAddedRedirect() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("views/result");
+		return mv;
+	}
+	
+	@RequestMapping(path = "saveFilm.do", params = "id",  method = RequestMethod.POST)
+	public ModelAndView saveFilm(Film film, RedirectAttributes redir, @RequestParam("id") int id) {
+		filmDao.saveFilm(film);
+		ModelAndView mv = new ModelAndView();
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:filmUpdated.do");
+		return mv;
+	}
+	
+	@RequestMapping(path = "filmUpdated.do", method = RequestMethod.GET)
+	public ModelAndView filmSavedRedirect() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("views/result");
 		return mv;

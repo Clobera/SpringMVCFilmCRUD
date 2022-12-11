@@ -57,7 +57,7 @@
 
 			<div>
 				<h3>
-					<a href="saveFilm.html">Make Changes to Film</a>
+					<a href="saveFilm.html?id=${film.id}">Make Changes to Film</a>
 				</h3>
 
 			</div>
