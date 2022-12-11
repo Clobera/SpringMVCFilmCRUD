@@ -88,7 +88,7 @@ public class FilmDaoImpl implements FilmDAO {
 
 				film = new Film(filmId, title, desc, releaseYear, language, rentDur, rate, length, repCost, rating,
 						features);
-
+				film.setCast(findActorsByFilmId(filmId));
 			}
 			rs.close();
 			stmt.close();
