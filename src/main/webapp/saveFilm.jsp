@@ -15,7 +15,7 @@
 <body>
 	<form action="saveFilm.do" method="POST">
 		
-		<input type= "hidden" type = "number" name="id" value=${film.id}>
+		<input type= "hidden" type = "number" name="id" >
 		
 		
 		

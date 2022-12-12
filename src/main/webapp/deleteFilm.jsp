@@ -13,9 +13,9 @@
 <body>
 	<h3>Film</h3>
 	<form action="deleteFilm.do">
-		Film ID:
-		<input type="number" name="id" size="4" value=${film.id}/> 
-		<input type="submit" value="Delete Film by ID" />
+		Film ID: <p>${film.id}</p>
+		<input name="id" size="4" value="${film.id}"> 
+		<input type="submit" value="Delete Film by ID" >
 	</form>
 </body>
 </html>

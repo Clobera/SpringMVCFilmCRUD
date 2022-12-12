@@ -47,7 +47,7 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "saveFilm.do", method = RequestMethod.POST)
+	@RequestMapping(path = "saveFilm.do", params ="id", method = RequestMethod.POST)
 	public ModelAndView saveFilm(Film film, RedirectAttributes redir) {
 		filmDao.saveFilm(film);
 		ModelAndView mv = new ModelAndView();
