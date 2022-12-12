@@ -8,7 +8,11 @@
 <html>
 <head>
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Film</title>
 </head>
@@ -16,7 +20,7 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<h1>${film.getTitle()}(${film.releaseYear})</h1>
-			<h3>${film.language}</h3>
+			<h3>${language.name}</h3>
 			<h3>Rated ${film.rating}</h3>
 
 			<div>
@@ -59,15 +63,19 @@
 
 			<div>
 				<h3>
-					<a href="home.do">Go Home</a>
-					<a href="saveFilm.jsp?">Make Changes to Film</a>
+					<a href="home.do">Go Home</a> <a href="saveFilm.jsp?">Make
+						Changes to Film</a>
 				</h3>
-					<form action="deleteFilm.do" method="GET">
-					<input type="hidden" name="filmid" value="${film.id}"/><input type="submit" value="Delete"/>
-					</form>
-					<form action="saveFilm.do" method="POST">
-					<input type="hidden" name="filmid" value="${film.id}"/><input type="submit" value="Update"/>
-					</form>
+				<form action="deleteFilm.do" method="GET">
+					<input type="hidden" name="filmid" value="${film.id}" /> <input
+						type="submit" value="Delete" />
+				</form>
+
+				<form action="saveFilm.do" method="POST">
+					<input type="text" name="id" value="${film.id}" /> <input
+						type="submit" value="Update Film" />
+				</form>
+
 			</div>
 
 		</c:when>

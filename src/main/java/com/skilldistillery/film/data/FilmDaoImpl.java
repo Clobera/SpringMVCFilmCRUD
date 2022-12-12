@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
+import com.skilldistillery.film.entities.Language;
 
 @Component
 public class FilmDaoImpl implements FilmDAO {
@@ -442,5 +443,28 @@ public class FilmDaoImpl implements FilmDAO {
 		}
 		return true;
 
+	}
+
+	@Override
+	public Language findLangById(int languageId) throws SQLException {
+		Language lang = null;
+		String sql = "SELECT name, language.id FROM language  JOIN film ON language.id = film.language_id WHERE film.id = ?";
+
+		Connection conn = DriverManager.getConnection(URL, user, pw);
+
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, languageId);
+
+		ResultSet rs = stmt.executeQuery();
+
+		if (rs.next()) {
+			lang = new Language(); // Create the object
+			// Here is our mapping of query columns to our object fields:
+			lang.setId(rs.getInt("id"));
+			lang.setName(rs.getString("name"));
+
+		}
+		conn.close();
+		return lang;
 	}
 }
