@@ -105,22 +105,18 @@ public class FilmDaoImpl implements FilmDAO {
 
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pw);
-			String sql = "SELECT * from film       " + "JOIN film_actor on film.id = film_actor.film_id     "
-					+ "JOIN actor on film_actor.actor_id = actor.id           "
-					+ "JOIN language on film.language_id = language.id           "
-					+ "WHERE  film.description like ? or film.title like ?";
+			String sql = "SELECT * FROM film WHERE film.title LIKE ? OR film.description LIKE ?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + keywords + "%");
 			stmt.setString(2, "%" + keywords + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				int filmId = rs.getInt("film.id");
-				String title = rs.getString("film.title");
-				String desc = rs.getString("film.description");
-				int releaseYear = rs.getInt("film.release_year");
-				String language = rs.getString("language.name");
-
+				int filmId = rs.getInt("id");
+				String title = rs.getString("title");
+				String desc = rs.getString("description");
+				int releaseYear = rs.getInt("release_year");
+				int language = rs.getInt("language_id");
 				int rentDur = rs.getInt("rental_duration");
 				double rate = rs.getDouble("rental_rate");
 				int length = rs.getInt("length");

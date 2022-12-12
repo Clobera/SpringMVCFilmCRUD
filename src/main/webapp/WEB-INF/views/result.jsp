@@ -59,9 +59,15 @@
 
 			<div>
 				<h3>
+					<a href="home.do">Go Home</a>
 					<a href="saveFilm.jsp?">Make Changes to Film</a>
 				</h3>
-					<a href="deleteFilm.jsp?id">Delete Film</a>
+					<form action="deleteFilm.do" method="GET">
+					<input type="hidden" name="filmid" value="${film.id}"/><input type="submit" value="Delete"/>
+					</form>
+					<form action="saveFilm.do" method="POST">
+					<input type="hidden" name="filmid" value="${film.id}"/><input type="submit" value="Update"/>
+					</form>
 			</div>
 
 		</c:when>

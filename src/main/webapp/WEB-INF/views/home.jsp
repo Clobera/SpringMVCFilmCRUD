@@ -9,13 +9,17 @@
 <title>MVC Film Site</title>
 </head>
 <body>
-<h1>SD Movie Data Base</h1>
+<h1 class="mainTitle">SD Movie Data Base</h1>
 
 <a href = "filmById.html" >Find Film By Id</a>
 <br>
 
+<a href = "keyword.html">Find Films by keyword</a>
+<br>
+
 <a href = "createFilm.html">Add Film</a>
 <br>
+
 
 </body>
 </html>

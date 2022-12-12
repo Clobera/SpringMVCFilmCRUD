@@ -16,7 +16,7 @@
 	<form action="saveFilm.do" method="POST">
 		
 		<label for="Id">Film"</label>
-		<input type ="text" name = "id"/>
+		<input type ="text" name = "id" value="${film.id} "/>
 		
 		
 		<label for="title"> Title: </label> 

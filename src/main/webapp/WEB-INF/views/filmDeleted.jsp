@@ -18,7 +18,7 @@
 <c:when test="${filmDeleted == true}">
 
 <p>Film Deleted</p>
-
+<a href="home.do">Go Home</a>
 </c:when>
 
 <c:when test="${filmDeleted == false}">
