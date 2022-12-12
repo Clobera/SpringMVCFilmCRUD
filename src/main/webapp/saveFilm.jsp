@@ -15,8 +15,8 @@
 <body>
 	<form action="saveFilm.do" method="POST">
 		
-		<input type= "hidden" type = "number" name="id" >
-		
+		<label for="Id">Film"</label>
+		<input type ="text" name = "id"/>
 		
 		
 		<label for="title"> Title: </label> 

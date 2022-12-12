@@ -13,7 +13,7 @@
 <body>
 	<h3>Film</h3>
 	<form action="deleteFilm.do">
-		Film ID: <p>${film.id}</p>
+		<label for = "id">Film ID</label>
 		<input name="id" size="4" value="${film.id}"> 
 		<input type="submit" value="Delete Film by ID" >
 	</form>
