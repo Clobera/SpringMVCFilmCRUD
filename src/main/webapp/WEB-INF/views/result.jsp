@@ -59,9 +59,9 @@
 
 			<div>
 				<h3>
-					<a href="saveFilm.jsp?id=${film.id}">Make Changes to Film</a>
+					<a href="saveFilm.jsp?">Make Changes to Film</a>
 				</h3>
-					<a href="deleteFilm.jsp?id=${film.id}">Delete Film</a>
+					<a href="deleteFilm.jsp?id">Delete Film</a>
 			</div>
 
 		</c:when>
