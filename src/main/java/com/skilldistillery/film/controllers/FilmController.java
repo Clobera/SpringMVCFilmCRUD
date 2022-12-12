@@ -23,9 +23,9 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "findFilmById.do", params = "id", method = RequestMethod.GET)
-	public ModelAndView findFilmById(String id) {
+	public ModelAndView findFilmById(int id) {
 		ModelAndView mv = new ModelAndView();
-		Film f = filmDao.findFilmById(Integer.parseInt(id));
+		Film f = filmDao.findFilmById(id);
 		mv.addObject("film", f);
 		mv.setViewName("views/result");
 		return mv;
@@ -66,6 +66,8 @@ public class FilmController {
 public ModelAndView deleteFilm(Film film) {
 	ModelAndView mv = new ModelAndView();
 	boolean filmDeleted = filmDao.deleteFilm(film);
-	mv.addObject("filmDeleted",filmDeleted);
+	mv.addObject("filmDeleted", filmDeleted);
+	mv.setViewName("views/filmDeleted");
+	
 	return mv;
 }}
