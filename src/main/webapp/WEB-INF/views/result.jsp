@@ -72,7 +72,7 @@
 				</form>
 
 				<form action="saveFilm.do" method="POST">
-					<input type="text" name="id" value="${film.id}" /> <input
+					<input type="number" name="filmid" value="${film.id}" /> <input
 						type="submit" value="Update Film" />
 				</form>
 

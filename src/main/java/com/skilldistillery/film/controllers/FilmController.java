@@ -71,19 +71,19 @@ public class FilmController {
 	public ModelAndView saveFilm(Film film, RedirectAttributes redir, int filmid) {
 		filmDao.saveFilm(film);
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("film", film);
 		Film filmUpdate = filmDao.findFilmById(filmid);
-
+		
 		redir.addFlashAttribute("filmUpdate", filmUpdate);
-		mv.setViewName("redirect:filmUpdated.do");
+		mv.setViewName("views/saveFilm");
 		return mv;
 	}
 
 	@RequestMapping(path = "filmUpdated.do", method = RequestMethod.GET)
-	public ModelAndView filmSavedRedirect(Film filmUpdate) {
+	public ModelAndView filmSavedRedirect(Film filmUpdate,RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
+		redir.addFlashAttribute("film", filmUpdate);
 		mv.addObject("film", filmUpdate);
-		mv.setViewName("views/result");
+		mv.setViewName("save");
 		return mv;
 	}
 
