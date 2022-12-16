@@ -67,47 +67,23 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "saveFilm.do", params = "filmid", method = RequestMethod.POST)
-	public ModelAndView saveFilm(Film film, RedirectAttributes redir, int filmid) {
-		filmDao.saveFilm(film);
+	@RequestMapping(path = "saveFilm.do", method = RequestMethod.POST)
+	public ModelAndView saveFilm(Film film, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
-		Film filmUpdate = filmDao.findFilmById(filmid);
-		
-		redir.addFlashAttribute("filmUpdate", filmUpdate);
+		mv.addObject("film", film);
+		filmDao.saveFilm(film);
+		mv.setViewName("views/result");
+		return mv;
+	}
+
+	@RequestMapping(path = "filmUpdated.do", method = RequestMethod.POST)
+	public ModelAndView filmSavedRedirect(Film filmUpdate) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("film", filmUpdate);
 		mv.setViewName("views/saveFilm");
 		return mv;
 	}
 
-	@RequestMapping(path = "filmUpdated.do", method = RequestMethod.GET)
-	public ModelAndView filmSavedRedirect(Film filmUpdate,RedirectAttributes redir) {
-		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("film", filmUpdate);
-		mv.addObject("film", filmUpdate);
-		mv.setViewName("save");
-		return mv;
-	}
-
-//	@RequestMapping(path = "saveFilm.do", params ="id", method = RequestMethod.POST)
-//	public ModelAndView saveFilm(@RequestParam("id") int id, Film film, RedirectAttributes redir) {
-//		Film updatedFilm = filmDao.findFilmById(id);
-//		filmDao.saveFilm(updatedFilm);
-//		
-//		ModelAndView mv = new ModelAndView();
-//		redir.addFlashAttribute("film", film);
-//		Film filmUpdate = filmDao.findFilmById(id);
-//		
-//		redir.addFlashAttribute("filmUpdate", filmUpdate);
-//		mv.setViewName("redirect:filmUpdated.do");
-//		return mv;
-//	}
-//	
-//	@RequestMapping(path = "filmUpdated.do", method = RequestMethod.GET)
-//	public ModelAndView filmSavedRedirect(Film filmUpdate) {
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("film", filmUpdate);
-//		mv.setViewName("views/result");
-//		return mv;
-//	}
 
 	@RequestMapping(path = "deleteFilm.do", params = "filmid", method = RequestMethod.GET)
 	public ModelAndView deleteFilm(Film film, int filmid) {
